@@ -20,42 +20,22 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
 
-    - name: Zipping conversion_of_mp4_to_mp3
+    - name: Zip and deploy conversion_of_mp4_to_mp3
       run: |
-        cd conversion_of_mp4_to_mp3.py
-        zip -r ../conversion_of_mp4_to_mp3.zip .
-        cd ..
-
-    - name: Deploy conversion_of_mp4_to_mp3
-      run: |
+        zip conversion_of_mp4_to_mp3.zip conversion_of_mp4_to_mp3.py
         aws lambda update-function-code --function-name conversion_of_mp4_to_mp3 --zip-file fileb://conversion_of_mp4_to_mp3.zip
 
-    - name: Zipping conversion_of_mp3_to_json
+    - name: Zip and deploy conversion_of_mp3_to_json
       run: |
-        cd conversion_of_mp3_to_json.py
-        zip -r ../conversion_of_mp3_to_json.zip .
-        cd ..
-
-    - name: Deploy conversion_of_mp3_to_json
-      run: |
+        zip conversion_of_mp3_to_json.zip conversion_of_mp3_to_json.py
         aws lambda update-function-code --function-name conversion_of_mp3_to_json --zip-file fileb://conversion_of_mp3_to_json.zip
-    
-    - name: Zipping json_to_cloudsearch
-      run: |
-        cd json_to_cloudsearch.py
-        zip -r ../json_to_cloudsearch.zip .
-        cd ..
 
-    - name: Deploy json_to_cloudsearch
+    - name: Zip and deploy json_to_cloudsearch
       run: |
+        zip json_to_cloudsearch.zip json_to_cloudsearch.py
         aws lambda update-function-code --function-name json_to_cloudsearch --zip-file fileb://json_to_cloudsearch.zip
 
-    - name: Zipping api_to_lambda
+    - name: Zip and deploy api_to_lambda
       run: |
-        cd api_to_lambda.py
-        zip -r ../api_to_lambda.zip .
-        cd ..
-
-    - name: Deploy api_to_lambda
-      run: |
+        zip api_to_lambda.zip api_to_lambda.py
         aws lambda update-function-code --function-name api_to_lambda --zip-file fileb://api_to_lambda.zip

@@ -22,7 +22,7 @@ jobs:
 
     - name: Zipping conversion_of_mp4_to_mp3
       run: |
-        cd conversion_of_mp4_to_mp3
+        cd conversion_of_mp4_to_mp3.py
         zip -r ../conversion_of_mp4_to_mp3.zip .
         cd ..
 
@@ -32,7 +32,7 @@ jobs:
 
     - name: Zipping conversion_of_mp3_to_json
       run: |
-        cd conversion_of_mp3_to_json
+        cd conversion_of_mp3_to_json.py
         zip -r ../conversion_of_mp3_to_json.zip .
         cd ..
 
@@ -42,7 +42,7 @@ jobs:
     
     - name: Zipping json_to_cloudsearch
       run: |
-        cd json_to_cloudsearch
+        cd json_to_cloudsearch.py
         zip -r ../json_to_cloudsearch.zip .
         cd ..
 
@@ -52,7 +52,7 @@ jobs:
 
     - name: Zipping api_to_lambda
       run: |
-        cd api_to_lambda
+        cd api_to_lambda.py
         zip -r ../api_to_lambda.zip .
         cd ..
 

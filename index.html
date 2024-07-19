@@ -43,7 +43,7 @@
         var api_gateway_url = `https://6bdv704hg5.execute-api.us-east-1.amazonaws.com/api?query=${query}`;
         var rows = [];
         $.get( api_gateway_url, function( data ) {
-          console.log('cckjdbcj')
+          console.log('print response ')
           if (data && data.length>0){
             rows.push(`                <tr> \
                                   <th>Content</th> \

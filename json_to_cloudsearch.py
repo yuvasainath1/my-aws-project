@@ -82,10 +82,10 @@ def lambda_handler(event, context):
     
     # print("final data")
 
-    print("sainath")
+    print('response')
     response = cs_client.upload_documents(
     documents=file_data,
     contentType='application/json'
     )
     print(boto3.client('cloudsearch').describe_domains())
-    print("sainath")
+    print('response')

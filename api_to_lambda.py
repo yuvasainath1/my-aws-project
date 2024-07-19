@@ -19,4 +19,4 @@ def lambda_handler(event, context):
                 # "headers": { "Access-Control-Allow-Origin": "*", "Content-Type": "application/json" }
                 }
     return r['hits']['hit']
-    print(response)
+    print('response')

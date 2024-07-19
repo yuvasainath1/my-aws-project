@@ -38,4 +38,5 @@ def lambda_handler(event, context):
             }
         ]
     )
+    print('response')
     # # s3.Object(source_bucket.name, response_contents['Contents'][count]['Key']).delete()

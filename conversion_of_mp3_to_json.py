@@ -44,4 +44,5 @@ def lambda_handler(event, context):
         OutputBucketName='project1-json-file',
         OutputKey=output_key,
     )
+    print('response')
     # s3.Object(source_bucket.name, response_contents['Contents'][0]['Key']).delete()    

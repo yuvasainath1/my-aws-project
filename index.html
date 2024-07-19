@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>CloudSearch - Contents</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous'>
+  </head>
+  <body>
+    <div class='container'>
+        <h1>Video Search - Contents</h1>
+        <p>This is video search capability with CloudSearch, Lambda, API Gateway and static web hosting </p>
+
+        <div class="form-group">
+          <label for="usr">Search String:</label>
+          <input type="text" class="form-control" id="query">
+          <button id="search">Search</button>
+
+        </div>
+
+        <div class='table-responsive'>
+            <table class='table table-striped' style='display: none'>
+                <tr>
+                    <th>Content</th>
+                    <th>Confidence</th>
+                    <th>Start Time</th>
+                    <th>Video</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+    <script>
+
+      $(search).click(function() {
+      $('table.table').empty();
+        var query = $( "#query" ).val();
+        if (!query) {
+          alert('Please enter search string');
+          return false;
+        }
+        var api_gateway_url = `https://6bdv704hg5.execute-api.us-east-1.amazonaws.com/api?query=${query}`;
+        var rows = [];
+        $.get( api_gateway_url, function( data ) {
+          console.log('cckjdbcj')
+          if (data && data.length>0){
+            rows.push(`                <tr> \
+                                  <th>Content</th> \
+                                  <th>Confidence</th> \
+                                  <th>Start Time</th> \
+                                  <th>Video</th> \
+                              </tr> \
+                              <hr> `);
+
+            data.forEach(function(item) {
+                console.log('your message'+item);
+                var start = item['fields']['start_time'];
+                var source = item['fields']['url']+"#t="+start;
+                rows.push(`<tr> \
+                    <td>${item['fields']['content']}</td> \
+                    <td>${item['fields']['confidence']}</td> \
+                    <td>${item['fields']['start_time']}</td> \
+                    <td><video controls id="myVideo" width="320" height="176"><source src=${source} type="video/mp4"></video> </td> \
+
+                </tr>`);
+            });
+            // show the now filled table and hide the "loading" message
+            $('table.table').append(rows.join()).show();
+         }
+
+        });
+
+    });
+    </script>
+  </body>
+</html>

@@ -22,15 +22,19 @@ jobs:
 
     - name: Zipping conversion_of_mp4_to_mp3
       run: |
+        cd conversion_of_mp4_to_mp3
         zip -r ../conversion_of_mp4_to_mp3.zip .
-      
+        cd ..
+
     - name: Deploy conversion_of_mp4_to_mp3
       run: |
         aws lambda update-function-code --function-name conversion_of_mp4_to_mp3 --zip-file fileb://conversion_of_mp4_to_mp3.zip
 
     - name: Zipping conversion_of_mp3_to_json
       run: |
-        zip -r ../conversion_of_mp3_to_json .
+        cd conversion_of_mp3_to_json
+        zip -r ../conversion_of_mp3_to_json.zip .
+        cd ..
 
     - name: Deploy conversion_of_mp3_to_json
       run: |
@@ -38,15 +42,19 @@ jobs:
     
     - name: Zipping json_to_cloudsearch
       run: |
-        zip -r ../json_to_cloudsearch .
-    
+        cd json_to_cloudsearch
+        zip -r ../json_to_cloudsearch.zip .
+        cd ..
+
     - name: Deploy json_to_cloudsearch
       run: |
         aws lambda update-function-code --function-name json_to_cloudsearch --zip-file fileb://json_to_cloudsearch.zip
 
     - name: Zipping api_to_lambda
       run: |
-        zip -r ../api_to_lambda .
+        cd api_to_lambda
+        zip -r ../api_to_lambda.zip .
+        cd ..
 
     - name: Deploy api_to_lambda
       run: |
